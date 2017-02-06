@@ -12,14 +12,14 @@ type VkApiError struct {
 	RequestParams []VkApiErrorRequestParam
 }
 
+type AuthConfirmResponse struct {
+	Error    VkApiError              `json:\"error\"`
+	Response AuthConfirmResponseBody `json:\"response\"`
+}
+
 type AuthConfirmResponseBody struct {
 	// 1 if success
 	success int `json:\"success\"`
 	// User ID
 	userId int `json:\"user_id\"`
-}
-
-type AuthConfirmResponse struct {
-	Error    VkApiError              `json:\"error\"`
-	Response AuthConfirmResponseBody `json:\"response\"`
 }

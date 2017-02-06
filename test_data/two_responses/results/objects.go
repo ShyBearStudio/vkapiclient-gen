@@ -12,15 +12,33 @@ type VkApiError struct {
 	RequestParams []VkApiErrorRequestParam
 }
 
-type PhotosPhotoSizes struct {
-	// URL of the image.
-	Src string `json:\"id\"`
-	// Width in px.
-	Width string `json:\"width\"`
-	// Height in px.
-	Height string `json:\"height\"`
-	// Size type.
-	Type string `json:\"type\"`
+type BaseBoolInt struct {
+	Type int
+}
+
+type BaseLikes struct {
+	// Information whether current user likes the photo.
+	UserLikes BaseBoolInt `json:\"UserLikes\"`
+	// Likes number.
+	Count int
+}
+
+
+type BaseObjectCount struct {
+	// Items count
+	Count int
+}
+
+
+type PhotosGetByIdExtendedResponse struct {
+	Error    VkApiError      `json:\"error\"`
+	Response PhotosPhotoFull `json:\"response\"`
+}
+
+
+type PhotosGetByIdResponse struct {
+	Error    VkApiError    `json:\"error\"`
+	Response []PhotosPhoto `json:\"response\"`
 }
 
 type PhotosPhoto struct {
@@ -63,26 +81,6 @@ type PhotosPhoto struct {
 	AccessKey string `json:\"access_key\"`
 }
 
-type PhotosGetByIdResponse struct {
-	Error    VkApiError    `json:\"error\"`
-	Response []PhotosPhoto `json:\"response\"`
-}
-
-type BaseBoolInt struct {
-	Type int
-}
-
-type BaseObjectCount struct {
-	// Items count
-	Count int
-}
-
-type BaseLikes struct {
-	// Information whether current user likes the photo.
-	UserLikes BaseBoolInt `json:\"UserLikes\"`
-	// Likes number.
-	Count int
-}
 
 type PhotosPhotoFull struct {
 	// Photo ID.
@@ -129,7 +127,21 @@ type PhotosPhotoFull struct {
 	Tags       BaseObjectCount `json:\"tags\"`
 }
 
-type PhotosGetByIdExtendedResponse struct {
-	Error    VkApiError      `json:\"error\"`
-	Response PhotosPhotoFull `json:\"response\"`
+
+type PhotosPhotoSizes struct {
+	// URL of the image.
+	Src string `json:\"id\"`
+	// Width in px.
+	Width string `json:\"width\"`
+	// Height in px.
+	Height string `json:\"height\"`
+	// Size type.
+	Type string `json:\"type\"`
 }
+
+
+
+
+
+
+
