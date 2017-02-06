@@ -1,0 +1,61 @@
+{
+  "methods": [
+	  {
+      "name": "auth.confirm",
+      "description": "Completes a user's registration (begun with the [vk.com/dev/auth.signup|auth.signup] method) using an authorization code.",
+      "open": true,
+      "parameters": [
+        {
+          "name": "client_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_secret",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "phone",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "code",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string"
+        },
+        {
+          "name": "test_mode",
+          "type": "boolean"
+        },
+        {
+          "name": "intro",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_AUTH_PARAM_PASSWORD",
+          "code": 1111,
+          "description": "Invalid password"
+        },
+        {
+          "name": "API_ERROR_AUTH_PARAM_CODE",
+          "code": 1110,
+          "description": "Incorrect code"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/auth_confirm_response"
+        }
+      }
+    }
+  ]
+}
