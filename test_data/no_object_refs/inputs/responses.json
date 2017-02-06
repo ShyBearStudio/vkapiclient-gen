@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schemaobjects.json",
+  "title": "responses",
+  "definitions": {
+    "auth_confirm_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "integer",
+              "description": "1 if success",
+              "enum": [
+                1
+              ],
+              "enumNames": [
+                "ok"
+              ]
+            },
+            "user_id": {
+              "type": "integer",
+              "description": "User ID"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

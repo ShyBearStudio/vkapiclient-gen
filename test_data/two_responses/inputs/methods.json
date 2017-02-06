@@ -1,0 +1,38 @@
+{
+  "methods": [
+	  {
+      "name": "photos.getById",
+      "description": "Returns information about photos by their IDs.",
+      "open": true,
+      "parameters": [
+        {
+          "name": "photos",
+          "description": "IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example:; \"1_129207899,6492_135055734, ; -20629724_271945303\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields; '0' — (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_sizes",
+          "description": "'1' — to return photo sizes in a",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/photos_getById_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/photos_getById_extended_response"
+        }
+      }
+    }
+  ]
+}
