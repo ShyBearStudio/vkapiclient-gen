@@ -9,12 +9,12 @@ type compiler interface {
 }
 
 type vkApiClientCompiler struct {
-	Schemas       map[string]string
+	Schemas       map[string][]byte
 	OutputDirName string
 }
 
 func newVkApiClienCompiler(
-	schemas map[string]string, outputDirName string) *vkApiClientCompiler {
+	schemas map[string][]byte, outputDirName string) *vkApiClientCompiler {
 	return &vkApiClientCompiler{
 		Schemas:       schemas,
 		OutputDirName: outputDirName,

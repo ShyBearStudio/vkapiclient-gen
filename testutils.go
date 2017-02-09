@@ -19,15 +19,15 @@ func newTestCompiler(t *testing.T, testName string) *vkApiClientCompiler {
 	return compiler
 }
 
-func readTestSchemas(t *testing.T, testName string) map[string]string {
-	schemas := make(map[string]string)
+func readTestSchemas(t *testing.T, testName string) map[string][]byte {
+	schemas := make(map[string][]byte)
 	schemas["methods"] = getTestInputSchema(t, testName, "methods.json")
 	schemas["objects"] = getTestInputSchema(t, testName, "objects.json")
 	schemas["responses"] = getTestInputSchema(t, testName, "responses.json")
 	return schemas
 }
 
-func getTestInputSchema(t *testing.T, testName, fileName string) string {
+func getTestInputSchema(t *testing.T, testName, fileName string) []byte {
 	path := path.Join(testDataDir, testName, "inputs", fileName)
 	return readFile(t, path)
 }
@@ -36,7 +36,7 @@ func getCompilerOutputDirName(testName string) string {
 	return path.Join(testDataDir, testName, "run")
 }
 
-func readFile(t *testing.T, fileName string) string {
+func readFile(t *testing.T, fileName string) []byte {
 	if !fileExist(fileName) {
 		t.Fatalf("file '%s' not exist", fileName)
 	}
@@ -44,7 +44,7 @@ func readFile(t *testing.T, fileName string) string {
 	if err != nil {
 		t.Fatalf("Cannot get content of file '%s': %v", fileName, err)
 	}
-	return string(content)
+	return content
 }
 
 func fileExist(fileName string) bool {

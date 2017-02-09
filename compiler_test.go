@@ -29,18 +29,18 @@ func getTestResultDirName(testName string) string {
 }
 
 func assertGoFilesEquivalent(t *testing.T, expected, compiled string) {
-	expectedContent := readFile(t, expected)
-	compiledContent := readFile(t, compiled)
+	expectedContent := string(readFile(t, expected))
+	compiledContent := string(readFile(t, compiled))
 	if expectedContent != compiledContent {
 		t.Fatalf("Expected Go file '%s' is not equivalent to compiled file '%s'.", expected, compiled)
 	}
 }
 
 func TestValidateValidData(t *testing.T) {
-	schemas := map[string]string{
-		"objects":   "objects JSON schema",
-		"methods":   "methods JSON schema",
-		"responses": "responses JSON schema",
+	schemas := map[string][]byte{
+		"objects":   []byte{10, 20, 30},
+		"methods":   []byte{10, 60, 50},
+		"responses": []byte{10, 20, 70},
 	}
 	outputDirName := "c:/temp/compilerOutput"
 	compiler := newVkApiClienCompiler(schemas, outputDirName)
@@ -51,9 +51,9 @@ func TestValidateValidData(t *testing.T) {
 }
 
 func TestValidateInvalidSchemas(t *testing.T) {
-	schemas := map[string]string{
-		"objects":   "objects JSON schema",
-		"responses": "responses JSON schema",
+	schemas := map[string][]byte{
+		"objects":   []byte{10, 250, 30},
+		"responses": []byte{150, 20, 30},
 	}
 	outputDirName := "c:/temp/compilerOutput"
 	compiler := newVkApiClienCompiler(schemas, outputDirName)
@@ -64,10 +64,10 @@ func TestValidateInvalidSchemas(t *testing.T) {
 }
 
 func TestValidateInvalidOutputPath(t *testing.T) {
-	schemas := map[string]string{
-		"objects":   "objects JSON schema",
-		"methods":   "methods JSON schema",
-		"responses": "responses JSON schema",
+	schemas := map[string][]byte{
+		"objects":   []byte{10, 20, 30},
+		"methods":   []byte{10, 90, 130},
+		"responses": []byte{10, 11, 30},
 	}
 	outputDirName := ""
 	compiler := newVkApiClienCompiler(schemas, outputDirName)
